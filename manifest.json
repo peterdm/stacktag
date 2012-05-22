@@ -1,0 +1,20 @@
+{
+  "name": "SO tag suggestions",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Suggest additional tags for StackOverflow posts",
+  "permissions": [
+    "http://localhost:8983/"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+		"*://stackoverflow.com/questions/*"
+	  ],
+      "js" : [
+		"jquery.min.js", 
+		"suggest.js"
+	  ]
+    }
+  ]
+}
