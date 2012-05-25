@@ -9,7 +9,12 @@
   "content_scripts": [
     {
       "matches": [
-		"*://stackoverflow.com/questions/*"
+		"*://stackoverflow.com/questions/*",
+		"*://stackoverflow.com/users/*/*tab=questions*",
+		"*://stackoverflow.com/questions",
+		"*://stackoverflow.com/questions?page=*",
+		"*://stackoverflow.com/unanswered",
+		"*://stackoverflow.com/unanswered?page=*"
 	  ],
       "js" : [
 		"jquery.min.js", 
