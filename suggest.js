@@ -27,6 +27,7 @@ function exists(arr,obj) {
 
 function onResults(data) {
   var lasttag = "";
+  var numberFound = data['response']['numFound'];
 
   $.each(data['facet_counts']['facet_fields']['QuestionTags'], function(index, value) {
     if (index%2==0) {
@@ -38,10 +39,17 @@ function onResults(data) {
   });
 
   $.each(suggestions, function(key, value) {
-    var link = $('<a/>').addClass('post-tag').css('background-color','yellow');
+    var link = $('<a/>').addClass('post-tag');
     link.text(key);
 	link.attr('href', '/questions/tagged/'+key);
 	link.attr('rel', 'tag');
+	var opacity = 1 / Math.log(1/(value/numberFound)); // turn exp dropoff into geo
+	link.css({
+		'color' : '#7b9fb8',
+		'background-color' : 'rgba(224, 234, 241,' + opacity + ')',
+		'border-bottom' : '1px solid rgba(62, 109, 142,' + opacity + ')',
+		'border-right' : '1px solid rgba(127, 159, 182,' + opacity + ')'
+	});
 	$('.post-taglist').first().append(link);
 	console.log(key + ' (' + value + ')');
   });
