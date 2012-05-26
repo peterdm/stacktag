@@ -3,6 +3,8 @@
 // found in the LICENSE file.
 
 
+var detailPattern = new RegExp("/[0-9]+");
+var detail = detailPattern.exec(document.URL);
 
 function suggestTags(parentElement, childElements) {
   var query = "";
@@ -70,18 +72,26 @@ function exists(arr,obj) {
 
 
 $(window).load(function () {
-	// handle question detail page
-	suggestTags($('.post-taglist'), $('.post-taglist').find('.post-tag') );
-
-	setTimeout(function() {		
-		// handle question summary page (delay for ajax load -- caching needs a cmd-reload to demo)
+	// handle question detail page	
+	if (detail) {
+		suggestTags($('.post-taglist'), $('.post-taglist').find('.post-tag') );
+		tagsLoaded = true;
+    }
+	else if (document.URL.indexOf('?') > -1) {  // delay for ajax load
+		setTimeout(function() {		
+			$.each($('.tags'), function(index, value) {
+			 	parentElement = $(value);
+				suggestTags(parentElement, parentElement.find('.post-tag') );	
+			});
+		}, 500);
+	}
+	else {
 		$.each($('.tags'), function(index, value) {
 		 	parentElement = $(value);
 			suggestTags(parentElement, parentElement.find('.post-tag') );	
-			return;
-		});
-	}, 500);
-	
+		});		
+	}
+
 });
 
 

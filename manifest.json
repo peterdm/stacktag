@@ -12,9 +12,9 @@
 		"*://stackoverflow.com/questions/*",
 		"*://stackoverflow.com/users/*/*tab=questions*",
 		"*://stackoverflow.com/questions",
-		"*://stackoverflow.com/questions?page=*",
+		"*://stackoverflow.com/questions?*",
 		"*://stackoverflow.com/unanswered",
-		"*://stackoverflow.com/unanswered?page=*"
+		"*://stackoverflow.com/unanswered?*"
 	  ],
       "js" : [
 		"jquery.min.js", 
